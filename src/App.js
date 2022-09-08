@@ -11,10 +11,18 @@ function App() {
     { id: 3, title: "Javascript 3", body: "Description" },
   ]);
 
-  const bodyInputRef = userRef();
-
   const [title, setTitle] = useState("");
-  const addNewPost = (evt) => {};
+  const [body, setBody] = useState("");
+
+  const addNewPost = (evt) => {
+    evt.preventDefault();
+    const newPost = {
+      id: Date.now(),
+      title,
+      body,
+    };
+    setPosts([...posts, newPost]);
+  };
 
   return (
     <div className="App">
@@ -26,8 +34,14 @@ function App() {
           type="text"
           placeholder="Название поста"
         />
-        {/* * Неуправляемый (неконтроллируемый) компонент */}
-        <MyInput ref={bodyInputRef} type="text" placeholder="Описание поста" />
+        {/* * Неуправляемый (неконтроллируемый) компонент
+        <MyInput ref={bodyInputRef} type="text" placeholder="Описание поста" /> */}
+        <MyInput
+          value={body}
+          onChange={(evt) => setBody(evt.target.value)}
+          type="text"
+          placeholder="Описание поста"
+        />
         <MyButton onClick={addNewPost}>Создать</MyButton>
       </form>
       <PostList posts={posts} title="Посты про JS" />
