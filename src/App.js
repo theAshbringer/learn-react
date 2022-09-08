@@ -11,19 +11,12 @@ function App() {
     { id: 3, title: "Javascript 3", body: "Description" },
   ]);
 
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const [post, setPost] = useState({ title: "", body: "" });
 
   const addNewPost = (evt) => {
     evt.preventDefault();
-    const newPost = {
-      id: Date.now(),
-      title,
-      body,
-    };
-    setPosts([...posts, newPost]);
-    setTitle("");
-    setBody("");
+    setPosts([...posts, { ...post, id: Date.now() }]);
+    setPost({ title: "", body: "" });
   };
 
   return (
@@ -31,16 +24,16 @@ function App() {
       <form>
         {/** Управляемый компонент */}
         <MyInput
-          value={title}
-          onChange={(evt) => setTitle(evt.target.value)}
+          value={post.title}
+          onChange={(evt) => setPost({ ...post, title: evt.target.value })}
           type="text"
           placeholder="Название поста"
         />
         {/* * Неуправляемый (неконтроллируемый) компонент
         <MyInput ref={bodyInputRef} type="text" placeholder="Описание поста" /> */}
         <MyInput
-          value={body}
-          onChange={(evt) => setBody(evt.target.value)}
+          value={post.body}
+          onChange={(evt) => setPost({ ...post, body: evt.target.value })}
           type="text"
           placeholder="Описание поста"
         />
