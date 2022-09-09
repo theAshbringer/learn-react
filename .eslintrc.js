@@ -22,10 +22,16 @@ module.exports = {
     'linebreak-style': ['error', 'unix'],
     'react/jsx-filename-extension': ['warn', { extensions: ['.jsx'] }],
     'react/jsx-props-no-spreading': [
-      'enabled',
+      'warn',
       {
         html: 'ignore',
       },
     ],
+    'react/destructuring-assignment': [
+      'warn',
+      'always',
+      { ignoreClassFields: true, destructureInSignature: 'ignore' },
+    ],
+    'react/button-has-type': 'warn',
   },
 };
