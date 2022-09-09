@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import PostForm from "./components/PostForm";
 import PostList from "./components/PostList";
+import MyInput from "./components/UI/input/MyInput";
 import MySelect from "./components/UI/select/MySelect";
 import "./styles/App.css";
 
@@ -11,6 +12,16 @@ function App() {
     { id: 3, title: "ввв 3", body: "ааа" },
   ]);
   const [selectedSort, setSelectedSort] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const sortedPosts = useMemo(() => {
+    if (selectedSort) {
+      return [...posts].sort((a, b) =>
+        a[selectedSort].localeCompare(b[selectedSort])
+      );
+    }
+    return posts;
+  }, [selectedSort, posts]);
 
   const createPost = (newPost) => {
     setPosts([...posts, newPost]);
@@ -22,11 +33,6 @@ function App() {
 
   const sortPosts = (sort) => {
     setSelectedSort(sort);
-    setPosts(
-      [...posts].sort((a, b) => {
-        return a[sort].localeCompare(b[sort]);
-      })
-    );
   };
 
   return (
@@ -34,6 +40,11 @@ function App() {
       <PostForm create={createPost} />
       <hr style={{ marginBottom: "15px 0" }} />
       <div>
+        <MyInput
+          value={searchQuery}
+          onChange={(evt) => setSearchQuery(evt.target.value)}
+          placeholder="Поиск"
+        />
         <MySelect
           defaultValue={"Сортировка"}
           options={[
@@ -45,7 +56,11 @@ function App() {
         />
       </div>
       {posts.length ? (
-        <PostList remove={removePost} posts={posts} title="Посты про JS" />
+        <PostList
+          remove={removePost}
+          posts={sortedPosts}
+          title="Посты про JS"
+        />
       ) : (
         <h1 style={{ textAlign: "center" }}>Посты не найдены!</h1>
       )}
