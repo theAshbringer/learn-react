@@ -1,23 +1,24 @@
-import React, { useMemo, useState } from "react";
-import PostForm from "./components/PostForm";
-import PostList from "./components/PostList";
-import MyInput from "./components/UI/input/MyInput";
-import MySelect from "./components/UI/select/MySelect";
-import "./styles/App.css";
+/* eslint-disable react/jsx-filename-extension */
+import React, { useMemo, useState } from 'react';
+import PostForm from './components/PostForm';
+import PostList from './components/PostList';
+import MyInput from './components/UI/input/MyInput';
+import MySelect from './components/UI/select/MySelect';
+import './styles/App.css';
 
 function App() {
   const [posts, setPosts] = useState([
-    { id: 1, title: "ааа", body: "яяя" },
-    { id: 2, title: "ббб 2", body: "ппп" },
-    { id: 3, title: "ввв 3", body: "ааа" },
+    { id: 1, title: 'ааа', body: 'яяя' },
+    { id: 2, title: 'ббб 2', body: 'ппп' },
+    { id: 3, title: 'ввв 3', body: 'ааа' },
   ]);
-  const [selectedSort, setSelectedSort] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedSort, setSelectedSort] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const sortedPosts = useMemo(() => {
     if (selectedSort) {
       return [...posts].sort((a, b) =>
-        a[selectedSort].localeCompare(b[selectedSort])
+        a[selectedSort].localeCompare(b[selectedSort]),
       );
     }
     return posts;
@@ -38,7 +39,7 @@ function App() {
   return (
     <div className="App">
       <PostForm create={createPost} />
-      <hr style={{ marginBottom: "15px 0" }} />
+      <hr style={{ marginBottom: '15px 0' }} />
       <div>
         <MyInput
           value={searchQuery}
@@ -46,10 +47,10 @@ function App() {
           placeholder="Поиск"
         />
         <MySelect
-          defaultValue={"Сортировка"}
+          defaultValue="Сортировка"
           options={[
-            { value: "title", name: "По названию" },
-            { value: "body", name: "По описанию" },
+            { value: 'title', name: 'По названию' },
+            { value: 'body', name: 'По описанию' },
           ]}
           value={selectedSort}
           onChange={sortPosts}
@@ -62,7 +63,7 @@ function App() {
           title="Посты про JS"
         />
       ) : (
-        <h1 style={{ textAlign: "center" }}>Посты не найдены!</h1>
+        <h1 style={{ textAlign: 'center' }}>Посты не найдены!</h1>
       )}
     </div>
   );

@@ -4,7 +4,12 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'prettier', 'prettier/prettier'],
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+    'prettier',
+    'prettier/prettier',
+  ],
   overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
@@ -16,5 +21,11 @@ module.exports = {
     'react/prop-types': 0,
     'linebreak-style': ['error', 'unix'],
     'react/jsx-filename-extension': ['warn', { extensions: ['.jsx'] }],
+    'react/jsx-props-no-spreading': [
+      'enabled',
+      {
+        html: 'ignore',
+      },
+    ],
   },
 };

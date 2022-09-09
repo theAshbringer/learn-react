@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import MyButton from "./UI/button/MyButton";
-import MyInput from "./UI/input/MyInput";
+import React, { useState } from 'react';
+import MyButton from './UI/button/MyButton';
+import MyInput from './UI/input/MyInput';
 
 function PostForm({ create }) {
-  const [post, setPost] = useState({ title: "", body: "" });
+  const [post, setPost] = useState({ title: '', body: '' });
 
   const addNewPost = (evt) => {
     evt.preventDefault();
@@ -12,7 +12,7 @@ function PostForm({ create }) {
       id: Date.now(),
     };
     create(newPost);
-    setPost({ title: "", body: "" });
+    setPost({ title: '', body: '' });
   };
 
   return (
@@ -25,7 +25,7 @@ function PostForm({ create }) {
           type="text"
           placeholder="Название поста"
         />
-        {/* * Неуправляемый (неконтроллируемый) компонент
+        {/** Неуправляемый (неконтроллируемый) компонент
     <MyInput ref={bodyInputRef} type="text" placeholder="Описание поста" /> */}
         <MyInput
           value={post.body}
