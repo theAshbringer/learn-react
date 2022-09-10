@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import PostFilter from './components/PostFilter';
 import PostForm from './components/PostForm';
 import PostList from './components/PostList';
@@ -9,15 +10,22 @@ import { usePosts } from './hooks/usePosts';
 import './styles/App.css';
 
 function App() {
-  const [posts, setPosts] = useState([
-    { id: 1, title: 'ааа', body: 'яяя' },
-    { id: 2, title: 'ббб 2', body: 'ппп' },
-    { id: 3, title: 'ввв 3', body: 'ааа' },
-  ]);
+  const [posts, setPosts] = useState([]);
   const [filter, setFilter] = useState({ sort: '', query: '' });
   const [modal, setModal] = useState(false);
 
   const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
+
+  async function fetchPosts() {
+    const response = await axios.get(
+      'https://jsonplaceholder.typicode.com/posts',
+    );
+    setPosts(response.data);
+  }
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   const createPost = (newPost) => {
     setPosts([...posts, newPost]);
