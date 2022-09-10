@@ -33,5 +33,6 @@ module.exports = {
       { ignoreClassFields: true, destructureInSignature: 'ignore' },
     ],
     'react/button-has-type': 'warn',
+    'no-unused-vars': 'warn',
   },
 };
