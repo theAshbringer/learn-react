@@ -19,7 +19,7 @@ module.exports = {
   rules: {
     'no-console': 'warn',
     'react/prop-types': 0,
-    'linebreak-style': ['error', 'unix'],
+    'linebreak-style': ['error', 'windows'],
     'react/jsx-filename-extension': ['warn', { extensions: ['.jsx'] }],
     'react/jsx-props-no-spreading': [
       'warn',
