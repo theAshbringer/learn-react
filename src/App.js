@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import PostService from './API/PostService';
 import PostFilter from './components/PostFilter';
 import PostForm from './components/PostForm';
 import PostList from './components/PostList';
@@ -17,10 +17,8 @@ function App() {
   const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
 
   async function fetchPosts() {
-    const response = await axios.get(
-      'https://jsonplaceholder.typicode.com/posts',
-    );
-    setPosts(response.data);
+    const fetchedPosts = await PostService.getAll();
+    setPosts(fetchedPosts);
   }
 
   useEffect(() => {
