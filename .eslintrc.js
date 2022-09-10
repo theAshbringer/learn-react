@@ -27,12 +27,10 @@ module.exports = {
         html: 'ignore',
       },
     ],
-    'react/destructuring-assignment': [
-      'warn',
-      'always',
-      { ignoreClassFields: true, destructureInSignature: 'ignore' },
-    ],
+    'react/destructuring-assignment': 'warn',
     'react/button-has-type': 'warn',
     'no-unused-vars': 'warn',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
   },
 };
