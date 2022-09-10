@@ -4,7 +4,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  // "files.eol": "\n",
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
