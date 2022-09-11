@@ -10,14 +10,15 @@ The project is a compilation of common UI elements. Particular attention was pai
 
 ## Features 
 
-- Creating new post in a modal window
-- Post are fetched via [Axios](https://axios-http.com/) from [{JSON} Placeholder](https://jsonplaceholder.typicode.com/)
-- Show list of existing posts
-- Search posts by title
-- Sort by title or description
-- Delete posts
-- Animated post actions
-- Pagination
+- ➕ Creating new post in a modal window
+- ⏬ Post are fetched via [Axios](https://axios-http.com/) from [{JSON} Placeholder](https://jsonplaceholder.typicode.com/)
+- 📄 Show list of existing posts
+- 🔍 Search posts by title
+- 📶 Sort by title or description
+- 🗑️ Delete posts
+- 🎠 Animated post actions
+- :arrows_counterclockwise: Loader
+- 🔢 Pagination
 
 
 ## Get Started
