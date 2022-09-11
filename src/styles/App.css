@@ -39,19 +39,3 @@
   transform: translateX(-350px);
   transition: all 300ms ease-in;
 }
-
-.page {
-  margin-top: 30px;
-  display: flex;
-}
-
-.page__number {
-  padding: 10px;
-  border: 1px solid teal;
-  cursor: pointer;
-}
-
-.page__number_active {
-  border: 2px solid orange;
-  font-weight: bold;
-}

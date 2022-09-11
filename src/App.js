@@ -7,6 +7,7 @@ import PostList from './components/PostList';
 import MyButton from './components/UI/button/MyButton';
 import MyLoader from './components/UI/loader/MyLoader';
 import MyModal from './components/UI/modal/MyModal';
+import MyPagination from './components/UI/pagination/MyPagination';
 import useFetching from './hooks/useFetching';
 import usePagination from './hooks/usePagination';
 import { usePosts } from './hooks/usePosts';
@@ -21,7 +22,6 @@ function App() {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
-  const pagesArray = usePagination(totalPages);
 
   const [fetchPosts, isPostsLoading, postError] = useFetching(
     // eslint-disable-next-line no-shadow
@@ -73,25 +73,19 @@ function App() {
           <MyLoader />
         </div>
       ) : (
-        <PostList
-          remove={removePost}
-          posts={sortedAndSearchedPosts}
-          title="Посты про JS"
-        />
+        <div>
+          <PostList
+            remove={removePost}
+            posts={sortedAndSearchedPosts}
+            title="Посты про JS"
+          />
+          <MyPagination
+            totalPages={totalPages}
+            page={page}
+            changePage={changePage}
+          />
+        </div>
       )}
-      <div className="page">
-        {pagesArray.map((p) => (
-          <span
-            // onClick={() => setPage(p)}
-            onClick={() => changePage(p)}
-            className={
-              page === p ? 'page__number page__number_active' : 'page__number'
-            }
-          >
-            {p}
-          </span>
-        ))}
-      </div>
     </div>
   );
 }
