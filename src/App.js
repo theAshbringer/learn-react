@@ -5,6 +5,7 @@ import PostFilter from './components/PostFilter';
 import PostForm from './components/PostForm';
 import PostList from './components/PostList';
 import MyButton from './components/UI/button/MyButton';
+import MyLoader from './components/UI/loader/MyLoader';
 import MyModal from './components/UI/modal/MyModal';
 import { usePosts } from './hooks/usePosts';
 import './styles/App.css';
@@ -49,7 +50,15 @@ function App() {
       <hr style={{ marginBottom: '15px 0' }} />
       <PostFilter filter={filter} setFilter={setFilter} />
       {isPostsLoading ? (
-        <h1>Идет загрузка...</h1>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: '50px',
+          }}
+        >
+          <MyLoader />
+        </div>
       ) : (
         <PostList
           remove={removePost}
