@@ -23,15 +23,18 @@ function App() {
   const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
   const pagesArray = usePagination(totalPages);
 
-  const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
-    const response = await PostService.getAll(limit, page);
-    setPosts(response.data);
-    const totalCount = response.headers['x-total-count'];
-    setTotalPages(getPagesCount(totalCount, limit));
-  });
+  const [fetchPosts, isPostsLoading, postError] = useFetching(
+    // eslint-disable-next-line no-shadow
+    async (limit, page) => {
+      const response = await PostService.getAll(limit, page);
+      setPosts(response.data);
+      const totalCount = response.headers['x-total-count'];
+      setTotalPages(getPagesCount(totalCount, limit));
+    },
+  );
 
   useEffect(() => {
-    fetchPosts();
+    fetchPosts(limit, page);
   }, []);
 
   const createPost = (newPost) => {
@@ -41,6 +44,11 @@ function App() {
 
   const removePost = (post) => {
     setPosts(posts.filter((item) => item.id !== post.id));
+  };
+
+  const changePage = (p) => {
+    setPage(p);
+    fetchPosts(limit, p);
   };
 
   return (
@@ -71,6 +79,19 @@ function App() {
           title="Посты про JS"
         />
       )}
+      <div className="page">
+        {pagesArray.map((p) => (
+          <span
+            // onClick={() => setPage(p)}
+            onClick={() => changePage(p)}
+            className={
+              page === p ? 'page__number page__number_active' : 'page__number'
+            }
+          >
+            {p}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
