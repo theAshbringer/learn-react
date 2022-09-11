@@ -7,6 +7,7 @@ import PostList from './components/PostList';
 import MyButton from './components/UI/button/MyButton';
 import MyLoader from './components/UI/loader/MyLoader';
 import MyModal from './components/UI/modal/MyModal';
+import useFetching from './hooks/useFetching';
 import { usePosts } from './hooks/usePosts';
 import './styles/App.css';
 
@@ -15,16 +16,11 @@ function App() {
   const [filter, setFilter] = useState({ sort: '', query: '' });
   const [modal, setModal] = useState(false);
   const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
-  const [isPostsLoading, setIsPostsLoading] = useState(false);
 
-  async function fetchPosts() {
-    setIsPostsLoading(true);
-    setTimeout(async () => {
-      const fetchedPosts = await PostService.getAll();
-      setPosts(fetchedPosts);
-      setIsPostsLoading(false);
-    }, 1000);
-  }
+  const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
+    const fetchedPosts = await PostService.getAll();
+    setPosts(fetchedPosts);
+  });
 
   useEffect(() => {
     fetchPosts();
@@ -49,6 +45,7 @@ function App() {
       </MyModal>
       <hr style={{ marginBottom: '15px 0' }} />
       <PostFilter filter={filter} setFilter={setFilter} />
+      {postError && <h1>Произошла ошибка: {postError}</h1>}
       {isPostsLoading ? (
         <div
           style={{
