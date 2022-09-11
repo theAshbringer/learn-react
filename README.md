@@ -1,6 +1,6 @@
 # About
 
-The project is a compilation of common UI elements. Particular attention was paid not to the visual, but to the functionality, decomposition, and reusability of components.
+The project is a compilation of common UI elements related with feed of posts. Particular attention was paid not to the visual component, but to the functionality, decomposition, and reusability of components.
 
 ## Technologies and tools :hammer:
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
