@@ -34,5 +34,6 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 'off',
     'import/prefer-default-export': 'warn',
     'no-plusplus': ['warn', { allowForLoopAfterthoughts: true }],
+    'react/self-closing-comp': 'warn',
   },
 };
